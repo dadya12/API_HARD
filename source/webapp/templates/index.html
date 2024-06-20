@@ -1,0 +1,41 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+<img class="image" src="{% static image_url %}" alt="">
+{% if age > 18 and age < 25 %}
+    {% if age == 20 %}
+        <h1>UUUUUU {{ age }}</h1>
+    {% else %}
+        <h1>TEST {{ age }}</h1>
+    {% endif %}
+{% elif age > 40 %}
+    <h1>TEST1 {{ age }}</h1>
+{% else %}
+    <h1>TEST2 {{ age }}</h1>
+{% endif %}
+Имя {{ name }}
+<br>
+Возраст {{ age }}
+
+<br>
+<a href="create/">Создать статью</a>
+<br>
+
+{% for article in articles %}
+    <div class="article">
+        <h4>{{ article.title }} <i>{{ article.author }}</i></h4>
+        <p>{{ article.content }}</p>
+    </div>
+{% endfor %}
+
+</body>
+</html>
