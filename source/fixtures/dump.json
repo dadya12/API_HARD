@@ -1,0 +1,68 @@
+[
+{
+  "model": "webapp.article",
+  "pk": 2,
+  "fields": {
+    "title": "Статья2",
+    "author": "Кирилл",
+    "content": "Контент2",
+    "created_at": "2024-06-20T13:49:52.857Z",
+    "updated_at": "2024-06-20T13:49:52.857Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 3,
+  "fields": {
+    "title": "тест",
+    "author": "Неизвестный",
+    "content": "тест контент",
+    "created_at": "2024-06-20T13:53:59.080Z",
+    "updated_at": "2024-06-20T13:53:59.080Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 4,
+  "fields": {
+    "title": "статья",
+    "author": "Неизвестный",
+    "content": "ddd",
+    "created_at": "2024-06-20T14:01:33.093Z",
+    "updated_at": "2024-06-20T14:03:14.241Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 5,
+  "fields": {
+    "title": "",
+    "author": "Неизвестный",
+    "content": "",
+    "created_at": "2024-06-20T14:23:19.162Z",
+    "updated_at": "2024-06-20T14:23:19.163Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 6,
+  "fields": {
+    "title": "новая статья",
+    "author": "Неизвестный",
+    "content": "новый контент",
+    "created_at": "2024-06-20T14:24:42.707Z",
+    "updated_at": "2024-06-20T14:24:42.707Z"
+  }
+},
+{
+  "model": "webapp.article",
+  "pk": 8,
+  "fields": {
+    "title": "ldldld",
+    "author": "xsaxsaxsa",
+    "content": "saxsaxsa",
+    "created_at": "2024-06-20T14:38:17.467Z",
+    "updated_at": "2024-06-20T14:38:17.467Z"
+  }
+}
+]
