@@ -1,11 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from webapp.artcile_db import ArticleDb
 from webapp.models import Article
-
-
-# Create your views here.
 
 
 def index(request):
@@ -23,8 +19,11 @@ def create_article(request):
             author=request.POST.get("author")
         )
         return HttpResponseRedirect("/")
-        # return render(request, "article.html", context={
-        #     "title": title,
-        #     "content": content,
-        #     "author": author
-        # })
+
+
+def article_detail(request):
+    try:
+        article = Article.objects.get(id=request.GET.get("id"))
+    except Article.DoesNotExist:
+        return HttpResponseRedirect("/")
+    return render(request, "article_detail.html", context={"article": article})
