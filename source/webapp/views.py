@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from webapp.models import Article
+from webapp.validate import article_validate
 
 
 def index(request):
@@ -12,12 +13,25 @@ def create_article(request):
     if request.method == "GET":
         return render(request, "create_article.html")
     else:
-        article = Article.objects.create(
-            title=request.POST.get("title"),
-            content=request.POST.get("content"),
-            author=request.POST.get("author")
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        author = request.POST.get("author")
+
+        article = Article(
+            title=title,
+            content=content,
+            author=author
         )
-        return redirect("article_detail", pk=article.pk)
+        errors = article_validate(article)
+        if not errors:
+            article.save()
+            return redirect("article_detail", pk=article.pk)
+
+        return render(
+            request,
+            "create_article.html",
+            {"errors": errors, "article": article}
+        )
 
 
 def article_detail(request, *args, pk, **kwargs):
@@ -36,8 +50,17 @@ def update_article(request, *args, pk, **kwargs):
         article.title = request.POST.get("title")
         article.content = request.POST.get("content")
         article.author = request.POST.get("author")
-        article.save()
-        return redirect("article_detail", pk=article.pk)
+
+        errors = article_validate(article)
+
+        if not errors:
+            article.save()
+            return redirect("article_detail", pk=article.pk)
+        return render(
+            request,
+            "update_article.html",
+            {"errors": errors, "article": article}
+        )
 
 
 def delete_article(request, *args, pk, **kwargs):

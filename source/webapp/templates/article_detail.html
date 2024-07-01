@@ -1,4 +1,14 @@
 {% extends "base.html" %}
+
+{% block links %}
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'update_article' article.pk %}">Редактировать</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'delete_article' article.pk %}">Удалить</a>
+    </li>
+{% endblock %}
+
 {% block content %}
     <div class="card mt-3" style="width: 18rem;">
         <div class="card-body">
