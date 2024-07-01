@@ -1,0 +1,9 @@
+{% csrf_token %}
+<label>Title:</label><br/>
+<input type="text" value="{{ article.title }}" name="title"/><br/>
+<label>Text:</label><br/>
+<textarea name="content">{{ article.content }}</textarea><br/>
+<label>Author:</label><br/>
+<input type="text" value="{{ article.author }}" name="author"/><br/>
+<br/>
+<input type="submit" value="{{ button_text }}"/>
