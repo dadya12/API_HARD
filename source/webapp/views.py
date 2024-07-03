@@ -18,9 +18,9 @@ def create_article(request):
         form = ArticleForm(data=request.POST)
         if form.is_valid():
             article = Article.objects.create(
-                title=request.POST.get("title"),
-                content=request.POST.get("content"),
-                author=request.POST.get("author")
+                title=form.cleaned_data['title'],
+                content=form.cleaned_data["content"],
+                author=form.cleaned_data["author"]
             )
             return redirect("article_detail", pk=article.pk)
 
@@ -52,9 +52,9 @@ def update_article(request, *args, pk, **kwargs):
         form = ArticleForm(data=request.POST)
         if form.is_valid():
             article = get_object_or_404(Article, pk=pk)
-            article.title = request.POST.get("title")
-            article.content = request.POST.get("content")
-            article.author = request.POST.get("author")
+            article.title = form.cleaned_data['title']
+            article.content = form.cleaned_data['content']
+            article.author = form.cleaned_data['author']
             article.save()
             return redirect("article_detail", pk=article.pk)
         else:
