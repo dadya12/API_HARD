@@ -1,11 +1,14 @@
 from django.urls import path
+from django.views.generic import RedirectView
 
-from webapp.views import index, create_article, article_detail, update_article, delete_article
+from webapp.views import update_article, delete_article, ArticleListView, CreateArticleView, \
+    ArticleDetailView
 
 urlpatterns = [
-    path('', index, name='articles'),
-    path('create/', create_article, name='create_article'),
-    path('article/<int:pk>/', article_detail, name='article_detail'),
+    path('articles/', ArticleListView.as_view(), name='articles'),
+    path('', RedirectView.as_view(pattern_name='articles')),
+    path('create/', CreateArticleView.as_view(), name='create_article'),
+    path('article/<int:pk>/', ArticleDetailView.as_view(), name='article_detail'),
     path('article/<int:pk>/update/', update_article, name='update_article'),
     path('article/<int:pk>/delete/', delete_article, name='delete_article'),
 ]

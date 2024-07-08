@@ -1,20 +1,29 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
+from django.views.generic import TemplateView
 
 from webapp.forms import ArticleForm
 from webapp.models import Article
-from webapp.validate import article_validate
 
 
-def index(request):
-    articles = Article.objects.order_by("-created_at")
-    return render(request, "index.html", context={"articles": articles})
+class ArticleListView(View):
+
+    def get(self, request, *args, **kwargs):
+        articles = Article.objects.order_by("-created_at")
+        return render(request, "index.html", context={"articles": articles})
 
 
-def create_article(request):
-    if request.method == "GET":
+class CreateArticleView(View):
+    def dispatch(self, request, *args, **kwargs):
+        print(request.POST)
+        return super().dispatch(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
         form = ArticleForm()
         return render(request, "create_article.html", {"form": form})
-    else:
+
+    def post(self, request, *args, **kwargs):
+        print("post")
         form = ArticleForm(data=request.POST)
         if form.is_valid():
             article = Article.objects.create(
@@ -25,7 +34,6 @@ def create_article(request):
             tags = form.cleaned_data["tags"]
             article.tags.set(tags)
             return redirect("article_detail", pk=article.pk)
-
         return render(
             request,
             "create_article.html",
@@ -33,9 +41,23 @@ def create_article(request):
         )
 
 
-def article_detail(request, *args, pk, **kwargs):
-    article = get_object_or_404(Article, pk=pk)
-    return render(request, "article_detail.html", context={"article": article})
+class ArticleDetailView(TemplateView):
+    # template_name = "article_detail.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        self.article = get_object_or_404(Article, pk=kwargs.get("pk"))
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context["article"] = self.article
+        return context
+
+    def get_template_names(self):
+        if self.article.tags.exists():
+            return ["article_detail.html"]
+        else:
+            return ["test_detail.html"]
 
 
 def update_article(request, *args, pk, **kwargs):
