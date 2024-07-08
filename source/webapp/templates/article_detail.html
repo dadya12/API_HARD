@@ -17,7 +17,20 @@
             <p class="card-text">{{ article.content }}</p>
             <p class="card-text">{{ article.created_at|date:'Y-m-d' }}</p>
             <p class="card-text">{{ article.get_status_display }}</p>
-            <a href="{% url 'articles' %}" class="card-link">На главную</a>
+
+            <p>Теги: </p>
+            {% for tag in article.tags.all %}
+                {{ tag.name }}{% if forloop.last %}. {% else %}, {% endif %}
+                {% empty %}
+                <p>Нет ни одного тега</p>
+            {% endfor %}
         </div>
     </div>
+    <a href="{% url 'articles' %}" class="card-link">На главную</a>
+    {% if article.comments.exists %}
+        <p>Комментарии: </p>
+        {% for comment in article.comments.all %}
+            <p>{{ comment.text }}</p>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
