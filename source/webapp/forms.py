@@ -14,7 +14,7 @@ class ArticleForm(forms.Form):
             v.field.widget.attrs["class"] = "form-control"
 
 
-    title = forms.CharField(max_length=3, required=True, label="Название")
+    title = forms.CharField(max_length=50, required=True, label="Название")
     author = forms.CharField(
         max_length=50,
         required=False,

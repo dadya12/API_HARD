@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse, reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 
 from webapp.forms import ArticleForm
 from webapp.models import Article
@@ -13,31 +14,19 @@ class ArticleListView(View):
         return render(request, "index.html", context={"articles": articles})
 
 
-class CreateArticleView(View):
-    def dispatch(self, request, *args, **kwargs):
-        print(request.POST)
-        return super().dispatch(request, *args, **kwargs)
+class CreateArticleView(FormView):
+    template_name = "create_article.html"
+    form_class = ArticleForm
 
-    def get(self, request, *args, **kwargs):
-        form = ArticleForm()
-        return render(request, "create_article.html", {"form": form})
-
-    def post(self, request, *args, **kwargs):
-        form = ArticleForm(data=request.POST)
-        if form.is_valid():
-            article = Article.objects.create(
-                title=form.cleaned_data['title'],
-                content=form.cleaned_data["content"],
-                author=form.cleaned_data["author"]
-            )
-            tags = form.cleaned_data["tags"]
-            article.tags.set(tags)
-            return redirect("article_detail", pk=article.pk)
-        return render(
-            request,
-            "create_article.html",
-            {"form": form}
+    def form_valid(self, form):
+        article = Article.objects.create(
+            title=form.cleaned_data['title'],
+            content=form.cleaned_data["content"],
+            author=form.cleaned_data["author"]
         )
+        tags = form.cleaned_data["tags"]
+        article.tags.set(tags)
+        return redirect("article_detail", pk=article.pk)
 
 
 class ArticleDetailView(TemplateView):
