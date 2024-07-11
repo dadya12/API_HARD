@@ -17,7 +17,7 @@
                             {% for tag in article.tags.all %}
                                 {{ tag.name }}{% if forloop.last %}. {% else %}, {% endif %}
                                 {% empty %}
-                                <p>Нет ни одного тега</p>
+                                Нет ни одного тега
                             {% endfor %}
                         </p>
 
