@@ -48,36 +48,37 @@ class ArticleDetailView(TemplateView):
             return ["test_detail.html"]
 
 
-def update_article(request, *args, pk, **kwargs):
-    if request.method == "GET":
-        article = get_object_or_404(Article, pk=pk)
-        form = ArticleForm(initial={
-            "title": article.title,
-            "author": article.author,
-            "content": article.content,
-            "tags": article.tags.all()
-        })
-        return render(
-            request, "update_article.html",
-            context={"form": form}
-        )
-    else:
-        form = ArticleForm(data=request.POST)
-        if form.is_valid():
-            article = get_object_or_404(Article, pk=pk)
-            article.title = form.cleaned_data['title']
-            article.content = form.cleaned_data['content']
-            article.author = form.cleaned_data['author']
-            article.save()
-            tags = form.cleaned_data["tags"]
-            article.tags.set(tags)
-            return redirect("article_detail", pk=article.pk)
-        else:
-            return render(
-                request,
-                "update_article.html",
-                {"form": form}
-            )
+class UpdateArticleView(FormView):
+    template_name = "update_article.html"
+    form_class = ArticleForm
+
+    def dispatch(self, request, *args, **kwargs):
+        self.article = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self):
+        return get_object_or_404(Article, pk=self.kwargs.get("pk"))
+
+    def get_initial(self):
+        initial = {}
+        for key in 'title', 'content', 'author':
+            initial[key] = getattr(self.article, key)
+        initial['tags'] = self.article.tags.all()
+        return initial
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['article'] = self.article
+        return context
+
+    def form_valid(self, form):
+        self.article.title = form.cleaned_data['title']
+        self.article.content = form.cleaned_data['content']
+        self.article.author = form.cleaned_data['author']
+        self.article.save()
+        tags = form.cleaned_data["tags"]
+        self.article.tags.set(tags)
+        return redirect("article_detail", pk=self.article.pk)
 
 
 def delete_article(request, *args, pk, **kwargs):
