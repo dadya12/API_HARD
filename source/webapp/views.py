@@ -23,7 +23,6 @@ class CreateArticleView(View):
         return render(request, "create_article.html", {"form": form})
 
     def post(self, request, *args, **kwargs):
-        print("post")
         form = ArticleForm(data=request.POST)
         if form.is_valid():
             article = Article.objects.create(

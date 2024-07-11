@@ -13,13 +13,27 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ article.title }}</h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{ article.author }}</h6>
-                        <p class="card-text">{{ article.content }}</p>
-                        <a href="{% url 'article_detail' article.pk %}" class="card-link">Детальный просмотр</a>
-                        <a href="{% url 'update_article' article.pk %}" class="card-link">Редактировние</a>
-                        <a href="{% url 'delete_article' article.pk %}" class="card-link">Удаление</a>
+                        <p class="card-text">
+                            {% for tag in article.tags.all %}
+                                {{ tag.name }}{% if forloop.last %}. {% else %}, {% endif %}
+                                {% empty %}
+                                <p>Нет ни одного тега</p>
+                            {% endfor %}
+                        </p>
+
+                        <div class="btn-group" role="group">
+                            <a href="{% url "article_detail" article.pk %}" class="btn btn-primary"><i
+                                    class="bi bi-blockquote-right"></i></a>
+                            <a href="{% url "update_article" article.pk %}"
+                               class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{% url "delete_article" article.pk %}" class="btn btn-primary"><i
+                                    class="bi bi-trash3"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% empty %}
+            <h2>статьи не найдены</h2>
         {% endfor %}
     </div>
 {% endblock %}

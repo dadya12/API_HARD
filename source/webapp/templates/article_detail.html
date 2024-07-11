@@ -10,23 +10,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card mt-3" style="width: 18rem;">
+    <div class="card mt-3 text-center" style="">
         <div class="card-body">
-            <h5 class="card-title">{{ article.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">{{ article.author }}</h6>
-            <p class="card-text">{{ article.content }}</p>
-            <p class="card-text">{{ article.created_at|date:'Y-m-d' }}</p>
-            <p class="card-text">{{ article.get_status_display }}</p>
-
-            <p>Теги: </p>
-            {% for tag in article.tags.all %}
-                {{ tag.name }}{% if forloop.last %}. {% else %}, {% endif %}
-                {% empty %}
-                <p>Нет ни одного тега</p>
-            {% endfor %}
+            <h5 class="card-title">Название: {{ article.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Автор: {{ article.author }}</h6>
+            <p class="card-text">Контент: {{ article.content }}</p>
+            <p class="card-text">Дата создания: {{ article.created_at|date:'Y-m-d' }}</p>
+            <p class="card-text">Cтатус: {{ article.get_status_display }}</p>
+            <p>Теги:
+                {% for tag in article.tags.all %}
+                    {{ tag.name }}{% if forloop.last %}. {% else %}, {% endif %}
+                    {% empty %}
+                    Нет ни одного тега
+                {% endfor %}
+            </p>
         </div>
     </div>
-    <a href="{% url 'articles' %}" class="card-link">На главную</a>
     {% if article.comments.exists %}
         <p>Комментарии: </p>
         {% for comment in article.comments.all %}
