@@ -19,13 +19,7 @@ class CreateArticleView(FormView):
     form_class = ArticleForm
 
     def form_valid(self, form):
-        article = Article.objects.create(
-            title=form.cleaned_data['title'],
-            content=form.cleaned_data["content"],
-            author=form.cleaned_data["author"]
-        )
-        tags = form.cleaned_data["tags"]
-        article.tags.set(tags)
+        article = form.save()
         return redirect("article_detail", pk=article.pk)
 
 
@@ -59,12 +53,10 @@ class UpdateArticleView(FormView):
     def get_object(self):
         return get_object_or_404(Article, pk=self.kwargs.get("pk"))
 
-    def get_initial(self):
-        initial = {}
-        for key in 'title', 'content', 'author':
-            initial[key] = getattr(self.article, key)
-        initial['tags'] = self.article.tags.all()
-        return initial
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = self.article
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -72,12 +64,7 @@ class UpdateArticleView(FormView):
         return context
 
     def form_valid(self, form):
-        self.article.title = form.cleaned_data['title']
-        self.article.content = form.cleaned_data['content']
-        self.article.author = form.cleaned_data['author']
-        self.article.save()
-        tags = form.cleaned_data["tags"]
-        self.article.tags.set(tags)
+        form.save()
         return redirect("article_detail", pk=self.article.pk)
 
 
