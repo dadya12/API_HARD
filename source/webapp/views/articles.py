@@ -1,16 +1,29 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, ListView
 
 from webapp.forms import ArticleForm
 from webapp.models import Article
 
 
-class ArticleListView(View):
+class ArticleListView(ListView):
+    # queryset = Article.objects.filter(title__contains="Стат")
+    model = Article
+    template_name = "articles/index.html"
+    ordering = ['-created_at']
+    context_object_name = "articles"
+    paginate_by = 5
+    # paginate_orphans = 2
 
-    def get(self, request, *args, **kwargs):
-        articles = Article.objects.order_by("-created_at")
-        return render(request, "articles/index.html", context={"articles": articles})
+    # def get_queryset(self):
+    #     return super().get_queryset().filter(title__contains="Стат")
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     print(context)
+    #     return context
+
+
 
 
 class CreateArticleView(FormView):
