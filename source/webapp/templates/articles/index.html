@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block content %}
+    <form method="get">
+        {% include "partial/form.html" with button_text="Найти" form=search_form %}
+    </form>
     <br>
     <div class="row">
         {% for article in articles %}
