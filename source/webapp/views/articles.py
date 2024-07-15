@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse, reverse_lazy
 from django.views import View
 from django.views.generic import TemplateView, FormView
 
@@ -11,11 +10,11 @@ class ArticleListView(View):
 
     def get(self, request, *args, **kwargs):
         articles = Article.objects.order_by("-created_at")
-        return render(request, "index.html", context={"articles": articles})
+        return render(request, "articles/index.html", context={"articles": articles})
 
 
 class CreateArticleView(FormView):
-    template_name = "create_article.html"
+    template_name = "articles/create_article.html"
     form_class = ArticleForm
 
     def form_valid(self, form):
@@ -24,7 +23,7 @@ class CreateArticleView(FormView):
 
 
 class ArticleDetailView(TemplateView):
-    # template_name = "article_detail.html"
+    template_name = "articles/article_detail.html"
 
     def dispatch(self, request, *args, **kwargs):
         self.article = get_object_or_404(Article, pk=kwargs.get("pk"))
@@ -35,15 +34,15 @@ class ArticleDetailView(TemplateView):
         context["article"] = self.article
         return context
 
-    def get_template_names(self):
-        if self.article.tags.exists():
-            return ["article_detail.html"]
-        else:
-            return ["test_detail.html"]
+    # def get_template_names(self):
+    #     if self.article.tags.exists():
+    #         return ["article_detail.html"]
+    #     else:
+    #         return ["test_detail.html"]
 
 
 class UpdateArticleView(FormView):
-    template_name = "update_article.html"
+    template_name = "articles/update_article.html"
     form_class = ArticleForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -71,7 +70,7 @@ class UpdateArticleView(FormView):
 def delete_article(request, *args, pk, **kwargs):
     article = get_object_or_404(Article, pk=pk)
     if request.method == "GET":
-        return render(request, "delete_article.html", context={"article": article})
+        return render(request, "articles/delete_article.html", context={"article": article})
     else:
         article.delete()
         return redirect("articles")
