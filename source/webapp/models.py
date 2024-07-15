@@ -26,6 +26,7 @@ class Article(BaseModel):
         through_fields=("article", "tag"),
     )
 
+
     def __str__(self):
         return f"{self.pk}. {self.title}: {self.author}"
 

@@ -26,10 +26,11 @@
             </p>
         </div>
     </div>
-    {% if article.comments.exists %}
+    {% if comments.exists %}
         <p>Комментарии: </p>
-        {% for comment in article.comments.all %}
+        {% for comment in comments %}
             <p>{{ comment.text }}</p>
+            <p>{{ comment.created_at|date:"Y-m-d h:m:s" }}</p>
         {% endfor %}
     {% endif %}
 {% endblock %}

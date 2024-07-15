@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlencode
-from django.views.generic import TemplateView, FormView, ListView
+from django.views.generic import TemplateView, FormView, ListView, DetailView, CreateView
 
 from webapp.forms import ArticleForm, SearchForm
 from webapp.models import Article
@@ -14,6 +14,7 @@ class ArticleListView(ListView):
     ordering = ['-created_at']
     context_object_name = "articles"
     paginate_by = 5
+
     # paginate_orphans = 2
 
     def dispatch(self, request, *args, **kwargs):
@@ -46,8 +47,6 @@ class ArticleListView(ListView):
         return context
 
 
-
-
 class CreateArticleView(FormView):
     template_name = "articles/create_article.html"
     form_class = ArticleForm
@@ -57,23 +56,14 @@ class CreateArticleView(FormView):
         return redirect("article_detail", pk=article.pk)
 
 
-class ArticleDetailView(TemplateView):
+class ArticleDetailView(DetailView):
     template_name = "articles/article_detail.html"
-
-    def dispatch(self, request, *args, **kwargs):
-        self.article = get_object_or_404(Article, pk=kwargs.get("pk"))
-        return super().dispatch(request, *args, **kwargs)
+    model = Article
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context["article"] = self.article
+        context = super().get_context_data(**kwargs)
+        context["comments"] = self.object.comments.order_by("-created_at")
         return context
-
-    # def get_template_names(self):
-    #     if self.article.tags.exists():
-    #         return ["article_detail.html"]
-    #     else:
-    #         return ["test_detail.html"]
 
 
 class UpdateArticleView(FormView):
