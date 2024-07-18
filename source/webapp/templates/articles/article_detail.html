@@ -34,7 +34,12 @@
         <p>Комментарии: </p>
         {% for comment in comments %}
             <p>{{ comment.text }}</p>
+            <p>{{ comment.author }}</p>
             <p>{{ comment.created_at|date:"Y-m-d h:m:s" }}</p>
+            <a href="{% url "update_comment" comment.pk %}"
+                               class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+            <a href="{% url "delete_comment" comment.pk %}" class="btn btn-primary"><i
+                                    class="bi bi-trash3"></i></a>
         {% endfor %}
     {% endif %}
 {% endblock %}
