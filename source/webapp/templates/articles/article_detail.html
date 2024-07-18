@@ -7,6 +7,10 @@
     <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="{% url 'delete_article' article.pk %}">Удалить</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'create_comment' article.pk %}">Оставить
+            коммент</a>
+    </li>
 {% endblock %}
 
 {% block content %}
