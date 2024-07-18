@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from webapp.models import BaseModel
 
@@ -19,6 +20,9 @@ class Article(BaseModel):
         through='webapp.ArticleTag',
         through_fields=("article", "tag"),
     )
+
+    def get_absolute_url(self):
+        return reverse("article_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.pk}. {self.title}: {self.author}"
