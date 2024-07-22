@@ -17,6 +17,7 @@ class ArticleListView(ListView):
     # paginate_orphans = 2
 
     def dispatch(self, request, *args, **kwargs):
+        print(request.user.is_authenticated, "is_authenticated")
         self.form = self.get_form()
         self.search_value = self.get_search_value()
         return super().dispatch(request, *args, **kwargs)
