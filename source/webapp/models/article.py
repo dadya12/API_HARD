@@ -22,7 +22,7 @@ class Article(BaseModel):
     )
 
     def get_absolute_url(self):
-        return reverse("article_detail", kwargs={"pk": self.pk})
+        return reverse("webapp:article_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.pk}. {self.title}: {self.author}"

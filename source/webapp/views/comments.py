@@ -23,7 +23,7 @@ class CreateCommentView(CreateView):
         return redirect(article.get_absolute_url())
 
     # def get_success_url(self):
-    #     return reverse("article_detail", kwargs={"pk": self.object.article.pk})
+    #     return reverse("webapp:article_detail", kwargs={"pk": self.object.article.pk})
 
 
 class UpdateCommentView(UpdateView):
@@ -32,7 +32,7 @@ class UpdateCommentView(UpdateView):
     model = Comment
 
     def get_success_url(self):
-        return reverse("article_detail", kwargs={"pk": self.object.article.pk})
+        return reverse("webapp:article_detail", kwargs={"pk": self.object.article.pk})
 
 
 class DeleteCommentView(DeleteView):
@@ -41,4 +41,4 @@ class DeleteCommentView(DeleteView):
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         self.object.delete()
-        return redirect("article_detail", pk=self.object.article.pk)
+        return redirect("webapp:article_detail", pk=self.object.article.pk)

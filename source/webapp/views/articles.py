@@ -70,4 +70,4 @@ class UpdateArticleView(UpdateView):
 class DeleteArticleView(DeleteView):
     template_name = "articles/delete_article.html"
     model = Article
-    success_url = reverse_lazy("articles")
+    success_url = reverse_lazy("webapp:articles")

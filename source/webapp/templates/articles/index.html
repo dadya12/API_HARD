@@ -27,9 +27,9 @@
                         <div class="btn-group" role="group">
                             <a href="{{ article.get_absolute_url }}" class="btn btn-primary"><i
                                     class="bi bi-blockquote-right"></i></a>
-                            <a href="{% url "update_article" article.pk %}"
+                            <a href="{% url "webapp:update_article" article.pk %}"
                                class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="{% url "delete_article" article.pk %}" class="btn btn-primary"><i
+                            <a href="{% url "webapp:delete_article" article.pk %}" class="btn btn-primary"><i
                                     class="bi bi-trash3"></i></a>
                         </div>
                     </div>
