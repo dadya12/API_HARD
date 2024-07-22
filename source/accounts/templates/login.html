@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Вход</h1>
-    <form action="{% url 'accounts:login' %}" method="post" class="text-center w-25 ms-auto me-auto">
+    <h1>Вход</h1>
+    {{ request.get_full_path }}
+    <form action="" method="post" class="text-center w-25 ms-auto me-auto">
         {% csrf_token %}
         {% if has_error %}
             <p class="form-error">Неверное имя пользователя или пароль.</p>
@@ -15,6 +16,9 @@
             <label for="password" class="form-label">Пароль:</label>
             <input class="form-control" type="password" name="password" id="password">
         </div>
+        {% if next_param %}
+            <input type="hidden" name="next" value="{{ next_param }}">
+        {% endif %}
         <button class="mt-3 btn btn-light" type="submit">Войти</button>
     </form>
 {% endblock %}

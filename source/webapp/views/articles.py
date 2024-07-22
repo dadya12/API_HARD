@@ -1,4 +1,6 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.http import urlencode
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -14,6 +16,7 @@ class ArticleListView(ListView):
     ordering = ['-created_at']
     context_object_name = "articles"
     paginate_by = 5
+
     # paginate_orphans = 2
 
     def dispatch(self, request, *args, **kwargs):
@@ -47,7 +50,7 @@ class ArticleListView(ListView):
         return context
 
 
-class CreateArticleView(CreateView):
+class CreateArticleView(LoginRequiredMixin, CreateView):
     template_name = "articles/create_article.html"
     form_class = ArticleForm
 
