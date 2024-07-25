@@ -35,15 +35,24 @@
                 {% endblock %}
                 {% if not request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'accounts:login' %}">Войти</a>
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'accounts:login' %}?next={{ request.get_full_path }}">Войти</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{% url 'accounts:register' %}?next={{ request.get_full_path }}">Регистрация</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <form action="{% url 'accounts:logout' %}" method="post">
+                        <p class="nav-link" >Здравствуйте {{ request.user.username }}</p>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'accounts:logout' %}?next={{ request.get_full_path }}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="nav-link">Выйти</button>
                         </form>
                     </li>
+
                 {% endif %}
             </ul>
         </div>

@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
 
@@ -8,10 +9,16 @@ statuses = [("new", "Новая"), ("moderated", "Модерированная")
 
 class Article(BaseModel):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name="Название")
-    author = models.CharField(max_length=50, null=False, blank=False, verbose_name="Автор", default="Неизвестный")
     content = models.TextField(null=False, blank=False, verbose_name="Контент")
     status = models.CharField(max_length=20, choices=statuses, verbose_name="Статус", default=statuses[0][0])
-    # tags = models.ManyToManyField("webapp.Tag", related_name="articles", verbose_name="Теги", blank=True)
+
+    author = models.ForeignKey(
+        get_user_model(),
+        related_name="articles",
+        on_delete=models.SET_DEFAULT,
+        default=1
+    )
+
     tags = models.ManyToManyField(
         "webapp.Tag",
         related_name="articles",
