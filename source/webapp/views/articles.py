@@ -1,4 +1,5 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -54,6 +55,10 @@ class CreateArticleView(LoginRequiredMixin, CreateView):
     template_name = "articles/create_article.html"
     form_class = ArticleForm
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 
 class ArticleDetailView(DetailView):
     template_name = "articles/article_detail.html"
@@ -65,13 +70,22 @@ class ArticleDetailView(DetailView):
         return context
 
 
-class UpdateArticleView(UpdateView):
+class UpdateArticleView(PermissionRequiredMixin, UpdateView):
     template_name = "articles/update_article.html"
     form_class = ArticleForm
     model = Article
+    permission_required = "webapp.change_article"
+
+    def has_permission(self):
+        # return self.request.user.groups.filter(name="moderators").exists()
+        return super().has_permission() or self.request.user == self.get_object().author
 
 
-class DeleteArticleView(DeleteView):
+class DeleteArticleView(PermissionRequiredMixin, DeleteView):
     template_name = "articles/delete_article.html"
     model = Article
     success_url = reverse_lazy("webapp:articles")
+    permission_required = "webapp.delete_article"
+
+    def has_permission(self):
+        return super().has_permission() or self.request.user == self.get_object().author

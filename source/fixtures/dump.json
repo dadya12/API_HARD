@@ -1,26 +1,14 @@
 [
 {
     "model": "webapp.article",
-    "pk": 9,
-    "fields": {
-        "created_at": "2024-06-24T13:39:30.036Z",
-        "updated_at": "2024-07-04T13:21:53.521Z",
-        "title": "Статья10",
-        "author": "Нурбек",
-        "content": "lorem",
-        "status": "new"
-    }
-},
-{
-    "model": "webapp.article",
     "pk": 27,
     "fields": {
         "created_at": "2024-07-01T14:53:20.574Z",
-        "updated_at": "2024-07-04T13:21:53.522Z",
-        "title": "Статья1",
-        "author": "Кирилл",
+        "updated_at": "2024-07-17T14:21:11.910Z",
+        "title": "Article1",
         "content": "lorem",
-        "status": "new"
+        "status": "new",
+        "author": 1
     }
 },
 {
@@ -30,9 +18,9 @@
         "created_at": "2024-07-03T14:26:41.852Z",
         "updated_at": "2024-07-10T13:33:42.550Z",
         "title": "Статья8",
-        "author": "Мээрим",
-        "content": "v",
-        "status": "new"
+        "content": "Статья8",
+        "status": "new",
+        "author": 1
     }
 },
 {
@@ -42,9 +30,9 @@
         "created_at": "2024-07-04T13:13:13.754Z",
         "updated_at": "2024-07-04T13:21:53.514Z",
         "title": "Статья7",
-        "author": "Tom",
         "content": "lorem",
-        "status": "new"
+        "status": "new",
+        "author": 1
     }
 },
 {
@@ -54,9 +42,9 @@
         "created_at": "2024-07-08T13:05:18.792Z",
         "updated_at": "2024-07-10T13:33:02.945Z",
         "title": "Статья2",
-        "author": "John",
         "content": "lorem",
-        "status": "new"
+        "status": "new",
+        "author": 1
     }
 },
 {
@@ -66,9 +54,9 @@
         "created_at": "2024-07-10T14:49:11.705Z",
         "updated_at": "2024-07-10T14:49:11.705Z",
         "title": "Статья3",
-        "author": "Jane",
         "content": "lorem",
-        "status": "new"
+        "status": "new",
+        "author": 1
     }
 },
 {
@@ -78,9 +66,9 @@
         "created_at": "2024-07-10T14:54:07.810Z",
         "updated_at": "2024-07-10T14:54:07.810Z",
         "title": "Статья4",
-        "author": "Кирилл",
         "content": "lorem",
-        "status": "new"
+        "status": "new",
+        "author": 1
     }
 },
 {
@@ -88,11 +76,11 @@
     "pk": 53,
     "fields": {
         "created_at": "2024-07-10T14:55:38.700Z",
-        "updated_at": "2024-07-10T14:55:38.701Z",
-        "title": "Статья5",
-        "author": "Стас",
+        "updated_at": "2024-07-18T13:33:03.221Z",
+        "title": "Статья555",
         "content": "lorem",
-        "status": "new"
+        "status": "new",
+        "author": 1
     }
 },
 {
@@ -102,9 +90,33 @@
         "created_at": "2024-07-10T15:02:24.141Z",
         "updated_at": "2024-07-10T15:02:24.141Z",
         "title": "Статья6",
-        "author": "Азиз",
         "content": "lorem",
-        "status": "new"
+        "status": "new",
+        "author": 1
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 58,
+    "fields": {
+        "created_at": "2024-07-22T14:56:42.695Z",
+        "updated_at": "2024-07-25T14:17:49.115Z",
+        "title": "xzxxxxsss",
+        "content": "x",
+        "status": "new",
+        "author": 1
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 59,
+    "fields": {
+        "created_at": "2024-07-25T14:24:18.984Z",
+        "updated_at": "2024-07-25T14:25:49.818Z",
+        "title": "Tessssst",
+        "content": "sxaxsassss",
+        "status": "new",
+        "author": 4
     }
 },
 {
@@ -115,7 +127,7 @@
         "updated_at": "2024-07-11T17:33:29.597Z",
         "article": 27,
         "text": "Текст",
-        "author": "Автор1"
+        "author": 1
     }
 },
 {
@@ -126,7 +138,7 @@
         "updated_at": "2024-07-11T17:33:30.314Z",
         "article": 27,
         "text": "ТекстТекст",
-        "author": "Автор1"
+        "author": 1
     }
 },
 {
@@ -137,7 +149,7 @@
         "updated_at": "2024-07-11T17:33:31.011Z",
         "article": 51,
         "text": "Текст",
-        "author": "Автор2"
+        "author": 1
     }
 },
 {
@@ -148,7 +160,7 @@
         "updated_at": "2024-07-11T17:33:31.704Z",
         "article": 52,
         "text": "Текст",
-        "author": "Автор1"
+        "author": 1
     }
 },
 {
@@ -159,18 +171,7 @@
         "updated_at": "2024-07-11T17:33:32.449Z",
         "article": 52,
         "text": "ыфсыфсыф",
-        "author": "Автор3"
-    }
-},
-{
-    "model": "webapp.comment",
-    "pk": 6,
-    "fields": {
-        "created_at": "2024-07-11T17:33:22.405Z",
-        "updated_at": "2024-07-11T17:33:33.156Z",
-        "article": 53,
-        "text": "Другой текст",
-        "author": "Автор1"
+        "author": 1
     }
 },
 {
@@ -181,7 +182,7 @@
         "updated_at": "2024-07-11T17:33:33.845Z",
         "article": 39,
         "text": "Текст",
-        "author": "Автор1"
+        "author": 1
     }
 },
 {
@@ -192,7 +193,7 @@
         "updated_at": "2024-07-11T17:33:34.613Z",
         "article": 39,
         "text": "Текст",
-        "author": "Автор3"
+        "author": 1
     }
 },
 {
@@ -203,18 +204,7 @@
         "updated_at": "2024-07-11T17:33:35.358Z",
         "article": 35,
         "text": "Текст",
-        "author": "Автор1"
-    }
-},
-{
-    "model": "webapp.comment",
-    "pk": 10,
-    "fields": {
-        "created_at": "2024-07-11T17:33:26.019Z",
-        "updated_at": "2024-07-11T17:33:36.068Z",
-        "article": 52,
-        "text": "Текст",
-        "author": "Автор1"
+        "author": 1
     }
 },
 {
@@ -225,7 +215,7 @@
         "updated_at": "2024-07-11T17:33:36.797Z",
         "article": 46,
         "text": "Текст",
-        "author": "Автор2"
+        "author": 1
     }
 },
 {
@@ -236,7 +226,29 @@
         "updated_at": "2024-07-11T17:33:37.487Z",
         "article": 46,
         "text": "Текст",
-        "author": "Автор1"
+        "author": 1
+    }
+},
+{
+    "model": "webapp.comment",
+    "pk": 13,
+    "fields": {
+        "created_at": "2024-07-18T13:54:13.060Z",
+        "updated_at": "2024-07-18T13:54:13.060Z",
+        "article": 46,
+        "text": "dsacascsa",
+        "author": 1
+    }
+},
+{
+    "model": "webapp.comment",
+    "pk": 17,
+    "fields": {
+        "created_at": "2024-07-25T14:43:34.738Z",
+        "updated_at": "2024-07-25T14:43:34.738Z",
+        "article": 58,
+        "text": "xasxasxsa",
+        "author": 4
     }
 },
 {
@@ -273,26 +285,6 @@
         "created_at": "2024-07-11T17:30:01.931Z",
         "updated_at": "2024-07-11T17:30:04.296Z",
         "name": "Docker"
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 1,
-    "fields": {
-        "created_at": "2024-07-11T17:30:23.297Z",
-        "updated_at": "2024-07-11T17:30:25.176Z",
-        "article": 9,
-        "tag": 1
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 2,
-    "fields": {
-        "created_at": "2024-07-11T17:30:46.411Z",
-        "updated_at": "2024-07-11T17:30:48.014Z",
-        "article": 9,
-        "tag": 2
     }
 },
 {
@@ -382,6 +374,46 @@
         "created_at": "2024-07-11T17:32:08.768Z",
         "updated_at": "2024-07-11T17:32:09.588Z",
         "article": 27,
+        "tag": 3
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 15,
+    "fields": {
+        "created_at": "2024-07-18T13:33:03.231Z",
+        "updated_at": "2024-07-18T13:33:03.231Z",
+        "article": 53,
+        "tag": 2
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 16,
+    "fields": {
+        "created_at": "2024-07-22T14:56:42.705Z",
+        "updated_at": "2024-07-22T14:56:42.705Z",
+        "article": 58,
+        "tag": 1
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 17,
+    "fields": {
+        "created_at": "2024-07-25T14:24:19.003Z",
+        "updated_at": "2024-07-25T14:24:19.003Z",
+        "article": 59,
+        "tag": 2
+    }
+},
+{
+    "model": "webapp.articletag",
+    "pk": 18,
+    "fields": {
+        "created_at": "2024-07-25T14:24:19.003Z",
+        "updated_at": "2024-07-25T14:24:19.003Z",
+        "article": 59,
         "tag": 3
     }
 }

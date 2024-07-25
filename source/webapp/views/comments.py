@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -6,7 +7,7 @@ from webapp.forms import CommentForm
 from webapp.models import Article, Comment
 
 
-class CreateCommentView(CreateView):
+class CreateCommentView(LoginRequiredMixin, CreateView):
     template_name = "comments/create_comment.html"
     form_class = CommentForm
 
@@ -19,6 +20,7 @@ class CreateCommentView(CreateView):
         article = get_object_or_404(Article, pk=self.kwargs['pk'])
         comment = form.save(commit=False)
         comment.article = article
+        comment.author = self.request.user
         comment.save()
         return redirect(article.get_absolute_url())
 

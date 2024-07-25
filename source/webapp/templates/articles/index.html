@@ -29,10 +29,14 @@
                         <div class="btn-group" role="group">
                             <a href="{{ article.get_absolute_url }}" class="btn btn-primary"><i
                                     class="bi bi-blockquote-right"></i></a>
-                            <a href="{% url "webapp:update_article" article.pk %}"
-                               class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
-                            <a href="{% url "webapp:delete_article" article.pk %}" class="btn btn-primary"><i
-                                    class="bi bi-trash3"></i></a>
+                            {% if perms.webapp.change_article or request.user == article.author %}
+                                <a href="{% url "webapp:update_article" article.pk %}"
+                                   class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                            {% endif %}
+                            {% if perms.webapp.delete_article %}
+                                <a href="{% url "webapp:delete_article" article.pk %}" class="btn btn-primary"><i
+                                        class="bi bi-trash3"></i></a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

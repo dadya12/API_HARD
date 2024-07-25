@@ -38,3 +38,4 @@ class Article(BaseModel):
         db_table = "articles"
         verbose_name = "Статья"
         verbose_name_plural = "Статьи"
+        permissions = [("change_article_status", "менять статус статье")]
