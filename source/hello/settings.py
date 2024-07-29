@@ -129,6 +129,11 @@ LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "webapp:articles"
 LOGOUT_REDIRECT_URL = "webapp:articles"
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = Path.joinpath(BASE_DIR, 'uploads')
+
+# AUTH_USER_MODEL = 'accounts.MyUser'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 

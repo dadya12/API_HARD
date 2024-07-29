@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ user_obj.profile.avatar.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Ник нэйм {{ user_obj.username }}</p>
+            <p class="card-text">Email {{ user_obj.email }}</p>
+            <p class="card-text">Дата рождения {{ user_obj.profile.birth_date|default:'не указана' }}</p>
+        </div>
+    </div>
+{% endblock %}

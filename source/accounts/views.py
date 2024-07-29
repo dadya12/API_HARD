@@ -2,9 +2,10 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accounts.forms import MyUserCreationForm
+from accounts.models import Profile
 
 User = get_user_model()
 
@@ -40,6 +41,7 @@ class RegistrationView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        Profile.objects.create(user=user)
         login(self.request, user)
         return HttpResponseRedirect(self.get_success_url())
 
@@ -50,3 +52,9 @@ class RegistrationView(CreateView):
         if not next_url:
             next_url = reverse('webapp:articles')
         return next_url
+
+
+class ProfileView(DetailView):
+    model = User
+    template_name = "user_profile.html"
+    context_object_name = "user_obj"
