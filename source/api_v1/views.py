@@ -7,6 +7,8 @@ from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed, Http
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 
+from webapp.models import Article
+
 
 # Create your views here.
 @ensure_csrf_cookie
@@ -40,3 +42,28 @@ def echo(request):
         response = HttpResponseNotAllowed(permitted_methods=["GET", "POST"])
 
     return response
+
+
+def articles(request):
+    if request.method == 'GET':
+        articles = Article.objects.order_by('-created_at')
+        articles_data = []
+
+        for article in articles:
+            articles_data.append(
+                {
+                    "title": article.title,
+                    "content": article.content,
+                    "status": article.status,
+                }
+            )
+
+        return JsonResponse(articles_data, safe=False)
+    elif request.method == 'POST':
+        body = json.loads(request.body)
+        print(request.user)
+        Article.objects.create(**body, author=request.user)
+        return HttpResponse(status=201)
+    else:
+        return HttpResponseNotAllowed(permitted_methods=["GET", "POST"])
+
