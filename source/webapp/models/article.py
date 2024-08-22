@@ -24,8 +24,6 @@ class Article(BaseModel):
         related_name="articles",
         verbose_name="Теги",
         blank=True,
-        through='webapp.ArticleTag',
-        through_fields=("article", "tag"),
     )
 
     def get_absolute_url(self):

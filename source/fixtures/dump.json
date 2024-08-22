@@ -8,7 +8,8 @@
         "title": "Article1",
         "content": "lorem",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -20,7 +21,8 @@
         "title": "Статья8",
         "content": "Статья8",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -32,7 +34,8 @@
         "title": "Статья7",
         "content": "lorem",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -44,7 +47,8 @@
         "title": "Статья2",
         "content": "lorem",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -56,7 +60,8 @@
         "title": "Статья3",
         "content": "lorem",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -68,7 +73,8 @@
         "title": "Статья4",
         "content": "lorem",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -80,7 +86,8 @@
         "title": "Статья555",
         "content": "lorem",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -92,7 +99,8 @@
         "title": "Статья6",
         "content": "lorem",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -104,7 +112,8 @@
         "title": "xzxxxxsss",
         "content": "x",
         "status": "new",
-        "author": 1
+        "author": 1,
+        "tags": []
     }
 },
 {
@@ -116,7 +125,231 @@
         "title": "Tessssst",
         "content": "sxaxsassss",
         "status": "new",
-        "author": 4
+        "author": 4,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 60,
+    "fields": {
+        "created_at": "2024-08-19T14:16:07.910Z",
+        "updated_at": "2024-08-19T14:16:07.910Z",
+        "title": "json title",
+        "content": "content",
+        "status": "new",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 61,
+    "fields": {
+        "created_at": "2024-08-19T14:16:09.714Z",
+        "updated_at": "2024-08-19T14:16:09.714Z",
+        "title": "json title",
+        "content": "content",
+        "status": "new",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 62,
+    "fields": {
+        "created_at": "2024-08-19T14:17:04.842Z",
+        "updated_at": "2024-08-19T14:17:04.842Z",
+        "title": "json title",
+        "content": "content",
+        "status": "new",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 63,
+    "fields": {
+        "created_at": "2024-08-19T14:17:05.898Z",
+        "updated_at": "2024-08-19T14:17:05.898Z",
+        "title": "json title",
+        "content": "content",
+        "status": "new",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 64,
+    "fields": {
+        "created_at": "2024-08-19T14:22:06.994Z",
+        "updated_at": "2024-08-19T14:22:06.994Z",
+        "title": "json title",
+        "content": "content",
+        "status": "new",
+        "author": 2,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 65,
+    "fields": {
+        "created_at": "2024-08-22T13:34:59.845Z",
+        "updated_at": "2024-08-22T13:34:59.845Z",
+        "title": "json title",
+        "content": "content",
+        "status": "new",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 66,
+    "fields": {
+        "created_at": "2024-08-22T13:38:05.442Z",
+        "updated_at": "2024-08-22T13:38:05.442Z",
+        "title": "json title",
+        "content": "content",
+        "status": "new",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 67,
+    "fields": {
+        "created_at": "2024-08-22T13:40:22.714Z",
+        "updated_at": "2024-08-22T13:40:22.714Z",
+        "title": "jsoaaa",
+        "content": "content",
+        "status": "new",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 68,
+    "fields": {
+        "created_at": "2024-08-22T13:43:42.595Z",
+        "updated_at": "2024-08-22T14:09:12.153Z",
+        "title": "2222222",
+        "content": "contenaasaaaaaat",
+        "status": "moderated",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 69,
+    "fields": {
+        "created_at": "2024-08-22T14:15:16.929Z",
+        "updated_at": "2024-08-22T14:15:16.929Z",
+        "title": "2222222",
+        "content": "contenaasaaaaaat",
+        "status": "moderated",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 70,
+    "fields": {
+        "created_at": "2024-08-22T14:17:31.253Z",
+        "updated_at": "2024-08-22T14:17:31.253Z",
+        "title": "2222222",
+        "content": "contenaasaaaaaat",
+        "status": "moderated",
+        "author": 1,
+        "tags": []
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 71,
+    "fields": {
+        "created_at": "2024-08-22T14:33:26.795Z",
+        "updated_at": "2024-08-22T14:33:26.795Z",
+        "title": "aaaaaaaa",
+        "content": "a",
+        "status": "new",
+        "author": 2,
+        "tags": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 72,
+    "fields": {
+        "created_at": "2024-08-22T14:33:38.324Z",
+        "updated_at": "2024-08-22T14:36:23.622Z",
+        "title": "3333333",
+        "content": "contenaasaaaaaat",
+        "status": "moderated",
+        "author": 1,
+        "tags": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 73,
+    "fields": {
+        "created_at": "2024-08-22T14:44:13.457Z",
+        "updated_at": "2024-08-22T14:45:35.597Z",
+        "title": "343r34r3r3443",
+        "content": "contenaasaaaaaat",
+        "status": "moderated",
+        "author": 1,
+        "tags": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 74,
+    "fields": {
+        "created_at": "2024-08-22T14:45:45.253Z",
+        "updated_at": "2024-08-22T14:48:51.878Z",
+        "title": "7777777777",
+        "content": "contenaasaaaaaat",
+        "status": "new",
+        "author": 1,
+        "tags": [
+            2,
+            3
+        ]
+    }
+},
+{
+    "model": "webapp.article",
+    "pk": 75,
+    "fields": {
+        "created_at": "2024-08-22T14:58:19.323Z",
+        "updated_at": "2024-08-22T14:58:19.323Z",
+        "title": "7777777777",
+        "content": "contenaasaaaaaat",
+        "status": "new",
+        "author": 1,
+        "tags": [
+            2,
+            3
+        ]
     }
 },
 {
@@ -252,6 +485,17 @@
     }
 },
 {
+    "model": "webapp.comment",
+    "pk": 18,
+    "fields": {
+        "created_at": "2024-08-21T13:34:36.151Z",
+        "updated_at": "2024-08-21T13:34:36.151Z",
+        "article": 64,
+        "text": "sssssssss",
+        "author": 2
+    }
+},
+{
     "model": "webapp.tag",
     "pk": 1,
     "fields": {
@@ -285,136 +529,6 @@
         "created_at": "2024-07-11T17:30:01.931Z",
         "updated_at": "2024-07-11T17:30:04.296Z",
         "name": "Docker"
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 3,
-    "fields": {
-        "created_at": "2024-07-11T17:30:57.789Z",
-        "updated_at": "2024-07-11T17:30:59.467Z",
-        "article": 51,
-        "tag": 3
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 4,
-    "fields": {
-        "created_at": "2024-07-11T17:31:11.336Z",
-        "updated_at": "2024-07-11T17:31:12.506Z",
-        "article": 52,
-        "tag": 3
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 5,
-    "fields": {
-        "created_at": "2024-07-11T17:31:20.829Z",
-        "updated_at": "2024-07-11T17:31:22.373Z",
-        "article": 53,
-        "tag": 4
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 6,
-    "fields": {
-        "created_at": "2024-07-11T17:31:35.626Z",
-        "updated_at": "2024-07-11T17:31:37.260Z",
-        "article": 53,
-        "tag": 1
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 7,
-    "fields": {
-        "created_at": "2024-07-11T17:32:02.597Z",
-        "updated_at": "2024-07-11T17:32:04.557Z",
-        "article": 54,
-        "tag": 3
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 8,
-    "fields": {
-        "created_at": "2024-07-11T17:32:06.888Z",
-        "updated_at": "2024-07-11T17:32:05.270Z",
-        "article": 39,
-        "tag": 2
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 9,
-    "fields": {
-        "created_at": "2024-07-11T17:32:06.003Z",
-        "updated_at": "2024-07-11T17:32:10.937Z",
-        "article": 39,
-        "tag": 1
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 10,
-    "fields": {
-        "created_at": "2024-07-11T17:32:08.065Z",
-        "updated_at": "2024-07-11T17:32:10.231Z",
-        "article": 27,
-        "tag": 4
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 11,
-    "fields": {
-        "created_at": "2024-07-11T17:32:08.768Z",
-        "updated_at": "2024-07-11T17:32:09.588Z",
-        "article": 27,
-        "tag": 3
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 15,
-    "fields": {
-        "created_at": "2024-07-18T13:33:03.231Z",
-        "updated_at": "2024-07-18T13:33:03.231Z",
-        "article": 53,
-        "tag": 2
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 16,
-    "fields": {
-        "created_at": "2024-07-22T14:56:42.705Z",
-        "updated_at": "2024-07-22T14:56:42.705Z",
-        "article": 58,
-        "tag": 1
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 17,
-    "fields": {
-        "created_at": "2024-07-25T14:24:19.003Z",
-        "updated_at": "2024-07-25T14:24:19.003Z",
-        "article": 59,
-        "tag": 2
-    }
-},
-{
-    "model": "webapp.articletag",
-    "pk": 18,
-    "fields": {
-        "created_at": "2024-07-25T14:24:19.003Z",
-        "updated_at": "2024-07-25T14:24:19.003Z",
-        "article": 59,
-        "tag": 3
     }
 }
 ]

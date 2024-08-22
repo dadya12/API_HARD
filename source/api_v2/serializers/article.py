@@ -1,17 +1,11 @@
 from rest_framework import serializers
 
-from webapp.models import Tag
-from webapp.models.article import statuses, Article
+from webapp.models.article import Article
 
 
-class ArticleSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    title = serializers.CharField(max_length=50, required=True)
-    text = serializers.CharField(required=True, source="content")
-    created_at = serializers.DateTimeField(read_only=True)
-    updated_at = serializers.DateTimeField(read_only=True)
-    status = serializers.ChoiceField(choices=statuses, default=statuses[0][0])
-    tags = serializers.PrimaryKeyRelatedField(many=True, queryset=Tag.objects.all(), required=False)
+class ArticleSerializer(serializers.ModelSerializer):
+    test_id = serializers.IntegerField(write_only=True)
+
 
     def validate(self, attrs):
         return super().validate(attrs)
@@ -21,17 +15,12 @@ class ArticleSerializer(serializers.Serializer):
             raise serializers.ValidationError("Длина додлжна быть больше пяти")
         return value
 
+    class Meta:
+        model = Article
+        fields = ["id", "title", "content", "status", "tags", "created_at", "updated_at", "author", "test_id"]
+        read_only_fields = ["id", "created_at", "updated_at", "author"]
 
     def create(self, validated_data):
-        tags = validated_data.pop('tags', [])
-        article = Article.objects.create(**validated_data)
-        article.tags.set(tags)
-        return article
-
-    def update(self, instance, validated_data):
-        tags = validated_data.pop('tags', [])
-        for key, value in validated_data.items():
-            setattr(instance, key, value)
-        instance.save()
-        instance.tags.set(tags)
-        return instance
+        test_id = validated_data.pop("test_id")
+        print(test_id)
+        return super().create(validated_data)

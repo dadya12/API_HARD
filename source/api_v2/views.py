@@ -1,14 +1,10 @@
-import json
-from datetime import datetime
-from decimal import Decimal
-from json import JSONDecodeError
+from django.http import HttpResponse, HttpResponseNotAllowed
 
-from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest
-from django.shortcuts import render
-from django.views import View
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from api_v2.serializers import ArticleSerializer
 from webapp.models import Article
@@ -23,28 +19,26 @@ def get_csrf_token(request):
         return HttpResponseNotAllowed(permitted_methods=["GET"])
 
 
-class ArticleView(View):
+class ArticleView(APIView):
+
     def get(self, request, *args, **kwargs):
         articles = Article.objects.order_by('-created_at')
         serializer = ArticleSerializer(articles, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
-        body = json.loads(request.body)
-        serializer = ArticleSerializer(data=body)
-        if serializer.is_valid():
-            article = serializer.save()
-            return JsonResponse({"pk": article.pk}, status=status.HTTP_201_CREATED)
-        else:
-            return JsonResponse({"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        request_data = request.data.copy()
+        request_data["test_id"] = 1
+        serializer = ArticleSerializer(data=request_data)
+        serializer.is_valid(raise_exception=True)
+        article = serializer.save()
+        article_data = ArticleSerializer(article).data
+        return Response(article_data, status=status.HTTP_201_CREATED)
 
     def put(self, request, *args, pk, **kwargs):
         article = get_object_or_404(Article, pk=pk)
-        body = json.loads(request.body)
-        serializer = ArticleSerializer(data=body, instance=article)
-        if serializer.is_valid():
-            article = serializer.save()
-            article_data = ArticleSerializer(article).data
-            return JsonResponse(article_data, status=status.HTTP_201_CREATED)
-        else:
-            return JsonResponse({"errors": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+        serializer = ArticleSerializer(data=request.data, instance=article)
+        serializer.is_valid(raise_exception=True)
+        article = serializer.save()
+        article_data = ArticleSerializer(article).data
+        return Response(article_data, status=status.HTTP_200_OK)
