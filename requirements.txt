@@ -3,6 +3,7 @@ Django==5.0.6
 django-environ==0.11.2
 django-extensions==3.2.3
 django-uuslug==2.0.0
+djangorestframework==3.15.2
 pillow==10.4.0
 psycopg2-binary==2.9.9
 python-slugify==8.0.4
