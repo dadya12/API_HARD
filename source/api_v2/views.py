@@ -22,6 +22,11 @@ def get_csrf_token(request):
 class ArticleView(APIView):
 
     def get(self, request, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        if pk:
+            article = get_object_or_404(Article, pk=pk)
+            serializer = ArticleSerializer(article)
+            return Response(serializer.data)
         articles = Article.objects.order_by('-created_at')
         serializer = ArticleSerializer(articles, many=True)
         return Response(serializer.data)
@@ -37,8 +42,17 @@ class ArticleView(APIView):
 
     def put(self, request, *args, pk, **kwargs):
         article = get_object_or_404(Article, pk=pk)
-        serializer = ArticleSerializer(data=request.data, instance=article)
-        serializer.is_valid(raise_exception=True)
-        article = serializer.save()
-        article_data = ArticleSerializer(article).data
-        return Response(article_data, status=status.HTTP_200_OK)
+        if pk:
+            serializer = ArticleSerializer(article, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            article = serializer.save()
+            article_data = ArticleSerializer(article).data
+            return Response(article_data, status=status.HTTP_200_OK)
+        else:
+            serializer = ArticleSerializer(article, data=request)
+            return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, *args, pk, **kwargs):
+        article = get_object_or_404(Article, pk=pk)
+        article.delete()
+        return Response({'deleted': pk}, status=status.HTTP_204_NO_CONTENT)
