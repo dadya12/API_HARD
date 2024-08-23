@@ -1,11 +1,9 @@
 from rest_framework import serializers
-
 from webapp.models.article import Article
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     test_id = serializers.IntegerField(write_only=True)
-
 
     def validate(self, attrs):
         return super().validate(attrs)
